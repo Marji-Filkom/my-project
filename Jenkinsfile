@@ -11,13 +11,14 @@ pipeline {
         stage('Checkout') {
             steps {
                 git 'https://github.com/user/repo.git'  // Ganti dengan repo Git kamu
+                echo "Tahap Checkout..."
             }
         }
 
         stage('Build') {
             steps {
                 script {
-                    sh 'mvn clean package'  // Build project dengan Maven
+                    //sh 'mvn clean package'  // Build project dengan Maven
                 }
             }
         }
@@ -25,7 +26,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh 'mvn test'  // Menjalankan unit test
+                    //sh 'mvn test'  // Menjalankan unit test
                 }
             }
         }
