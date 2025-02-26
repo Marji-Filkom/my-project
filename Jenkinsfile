@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                bat 'echo "Checkout..."'
+                bat 'echo "Checkout..."' 
             }
         }
 
