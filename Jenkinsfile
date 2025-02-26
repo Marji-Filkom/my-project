@@ -1,79 +1,32 @@
 pipeline {
     agent any
 
-    environment {
-        PYTHON_VERSION = "3.10"  // Ganti sesuai kebutuhan
-        VENV_DIR = "venv"        // Nama virtual environment
-    }
-
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/user/repo.git'  // Ganti dengan repo Python-mu
+                bat 'echo "Checkout..."'
             }
         }
 
-        stage('Setup Python') {
+        stage('Build') {
             steps {
-                script {
-                    def pythonHome = tool name: "Python ${PYTHON_VERSION}", type: "hudson.plugins.python.PythonInstallation"
-                    env.PATH = "${pythonHome}/bin:${env.PATH}"
-                }
-                sh 'python --version'
+                bat  'echo "Building the project..."'
+                bat  'mvn clean package' // Contoh jika proyek menggunakan Maven
             }
         }
 
-        stage('Create Virtual Env & Install Dependencies') {
+        stage('Test') {
             steps {
-                sh '''
-                python -m venv ${VENV_DIR}
-                source ${VENV_DIR}/bin/activate
-                pip install --upgrade pip
-                pip install -r requirements.txt
-                '''
+                bat  'echo "Running tests..."'
+                bat  'mvn test' // Jalankan unit test jika pakai Maven
             }
         }
 
-        stage('Run Tests') {
+        stage('Deploy') {
             steps {
-                sh '''
-                source ${VENV_DIR}/bin/activate
-                pytest --junitxml=report.xml
-                '''
+                bat  'echo "Deploying application..."'
+                //bat  'scp target/*.jar user@server:/deploy-path/' // Contoh deploy ke server
             }
-        }
-
-        stage('Archive Test Results') {
-            steps {
-                junit 'report.xml'
-            }
-        }
-
-        stage('Build Package') {
-            steps {
-                sh '''
-                source ${VENV_DIR}/bin/activate
-                python setup.py sdist
-                '''
-            }
-        }
-
-        stage('Archive Artifacts') {
-            steps {
-                archiveArtifacts artifacts: 'dist/*.tar.gz', fingerprint: true
-            }
-        }
-    }
-
-    post {
-        always {
-            sh 'rm -rf ${VENV_DIR}'
-        }
-        success {
-            echo 'Build completed successfully!'
-        }
-        failure {
-            echo 'Build failed. Check logs for errors.'
         }
     }
 }
