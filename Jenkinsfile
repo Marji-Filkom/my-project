@@ -25,7 +25,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 bat  'echo "Deploying application..."'
-                bat  'scp target/*.jar user@server:/deploy-path/' // Contoh deploy ke server
+                //bat  'scp target/*.jar user@server:/deploy-path/' // Contoh deploy ke server
             }
         }
     }
