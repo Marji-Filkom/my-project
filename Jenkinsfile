@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                ssh 'echo "Checkout..."'
+                bat 'echo "Checkout..."'
             }
         }
 
         stage('Build') {
             steps {
-                ssh  'echo "Building the project..."'
+                bat  'echo "Building the project..."'
                 bat  'mvn clean package' // Contoh jika proyek menggunakan Maven
             }
         }
