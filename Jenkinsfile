@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Marji-Filkom/my-project.git'
+                bat 'echo "Checkout..."'
             }
         }
 
