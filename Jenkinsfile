@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deploying the application..."
-                sh 'cp target/*.jar "D:\deploy-folder"' 
+                bat 'copy target\\*.jar D:\\deploy-folder\\'
             }
         }
     }
