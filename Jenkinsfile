@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Building the application..."
                 // Tambahkan perintah build, misalnya:
-                // sh 'mvn clean package'
+                bat 'mvn clean package'
             }
         }
 
@@ -20,14 +20,14 @@ pipeline {
             steps {
                 echo "Running tests..."
                 // Tambahkan perintah testing, misalnya:
-                // sh 'mvn test'
+                bat  'mvn test'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo "Deploying the application..."
-                bat 'copy target\\*.jar D:\\deploy-folder\\'
+                bat 'copy target\*.jar  D:\deploy-folder'
             }
         }
     }
