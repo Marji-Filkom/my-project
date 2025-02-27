@@ -5,6 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 //git url: 'https://github.com/Marji-Filkom/my-project.git', branch: 'main'
+                echo "Checkout..."
             }
         }
         
