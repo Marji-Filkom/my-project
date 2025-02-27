@@ -1,9 +1,10 @@
+pipeline {
     agent any
     stages {
         stage('Build') {
             steps {
-              bat 'echo "Building the project..."'
-            }
+                echo 'Building...'
+            } // ✅ Pastikan kurung tutup berada di tempat yang benar
         }
     }
 }
