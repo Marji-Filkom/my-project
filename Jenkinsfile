@@ -27,8 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "Deploying the application..."
-                // Tambahkan perintah deploy, misalnya:
-                // sh './deploy.sh'
+                sh 'cp target/*.jar "D:\deploy-folder"' 
             }
         }
     }
