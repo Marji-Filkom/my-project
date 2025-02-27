@@ -4,31 +4,31 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                //bat 'echo "Checkout..."'
-                //git branch: 'main', url: ' https://github.com/Marji-Filkom/myapp-ci-cd.git'
-                //git url: 'git@github.com:Marji-Filkom/myapp-ci-cd.git', credentialsId: 'github-ssh-key'
-
+                //git url: 'https://github.com/Marji-Filkom/my-project.git', branch: 'main'
             }
         }
-
+        
         stage('Build') {
             steps {
-                bat  'echo "Building the project..."'
-                bat  'mvn clean package' // Contoh jika proyek menggunakan Maven
+                echo "Building the application..."
+                // Tambahkan perintah build, misalnya:
+                // sh 'mvn clean package'
             }
         }
 
         stage('Test') {
             steps {
-                bat  'echo "Running tests..."'
-                bat  'mvn test' // Jalankan unit test jika pakai Maven
+                echo "Running tests..."
+                // Tambahkan perintah testing, misalnya:
+                // sh 'mvn test'
             }
         }
 
         stage('Deploy') {
             steps {
-                bat  'echo "Deploying application..."'
-                //bat  'scp target/*.jar user@server:/deploy-path/' // Contoh deploy ke server
+                echo "Deploying the application..."
+                // Tambahkan perintah deploy, misalnya:
+                // sh './deploy.sh'
             }
         }
     }
