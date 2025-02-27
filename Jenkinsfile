@@ -5,7 +5,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 //bat 'echo "Checkout..."'
-                git branch: 'main', url: ' https://github.com/Marji-Filkom/myapp-ci-cd.git'
+                //git branch: 'main', url: ' https://github.com/Marji-Filkom/myapp-ci-cd.git'
+                git url: 'git@github.com:Marji-Filkom/myapp-ci-cd.git', credentialsId: 'github-ssh-key'
+
             }
         }
 
