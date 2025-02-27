@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                bat 'copy target\*.jar D:\deploy-folder
+                bat 'copy target/*.jar D:/deploy-folder'
             }
         }
     }
