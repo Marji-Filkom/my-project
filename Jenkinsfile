@@ -20,14 +20,14 @@ pipeline {
             steps {
                 echo "Running tests..."
                 // Tambahkan perintah testing, misalnya:
-                bat  'mvn test'
+                sh  'mvn test'
             }
         }
 
         stage('Deploy') {
             steps {
                 echo "Deploying the application..."
-                bat 'copy target\\*.jar D:\\deploy-folder\\'
+                sh 'copy target\\*.jar D:\\deploy-folder\\'
             }
         }
     }
