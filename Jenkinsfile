@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Building the application..."
                 // Tambahkan perintah build, misalnya:
-                bat 'mvn clean package'
+                sh 'mvn clean package'
             }
         }
 
