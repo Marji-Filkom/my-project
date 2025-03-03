@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo "Building the application..."
-                // Tambahkan perintah build, misalnya:
+                // Tambahkan perintah build, misalnya: 
                 bat 'mvn clean package'
             }
         }
