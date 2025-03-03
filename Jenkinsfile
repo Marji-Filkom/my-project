@@ -28,9 +28,6 @@ pipeline {
             steps {
                 echo "Deploying the application..."
                 bat 'copy target\\*.jar D:\\deploy-folder\\'
-                git add -f D:\deploy-folder\Aplikasiku-1-1.0.0.jar
-                git commit -m "Deploy update from Jenkins"
-                git push origin main
             }
         }
     }
