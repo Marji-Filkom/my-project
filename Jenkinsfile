@@ -22,11 +22,9 @@ pipeline {
         stage('Deploy Output to GitHub') {
             steps {
                 script {
-                    bat """
                     git add .
                     git commit -m "Deploy update from Jenkins"
                     git push origin ${BRANCH}
-                    """
                 }
             }
         }
