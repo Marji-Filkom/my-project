@@ -2,6 +2,8 @@ pipeline {
     agent any
 
     environment {
+        GIT_CREDENTIALS = 'github-token'  
+        REPO_URL = 'https://github.com/Marji-Filkom/my-project.git'
         BRANCH = 'main'
     }
 
