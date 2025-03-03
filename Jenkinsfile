@@ -23,10 +23,16 @@ pipeline {
         stage('Deploy Output to GitHub') {
             steps {
                 script {
-                    git add -f target/*  # Tambahkan file di folder target/
-                    git commit -m "Deploy update from Jenkins"
-                    git pull origin ${BRANCH} --rebase  # Hindari konflik
-                    git push origin ${BRANCH}
+                   git config --global user.email "xmarjiy@gmail.com"
+                   git config --global user.name "Marji-Filkom"
+
+                   git add -f target/*
+                   git commit -m "Deploy update from Jenkins"
+
+                   # Pastikan tidak ada konflik sebelum push
+                   git pull origin ${BRANCH} --rebase || git pull origin ${BRANCH} --allow-unrelated-histories
+
+                   git push origin ${BRANCH}
                  }
             }
         }
