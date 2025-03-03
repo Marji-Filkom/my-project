@@ -1,33 +1,33 @@
 pipeline {
     agent any
 
+    environment {
+        BRANCH = 'main'
+    }
+
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
                 git url: 'https://github.com/Marji-Filkom/my-project.git', branch: 'main'
-            }
-        }
-        
-        stage('Build') {
-            steps {
-                echo "Building the application..."
-                // Tambahkan perintah build, misalnya:
-                bat 'mvn clean package'
+
             }
         }
 
-        stage('Test') {
+        stage('Build Project') {
             steps {
-                echo "Running tests..."
-                // Tambahkan perintah testing, misalnya:
-                bat  'mvn test'
+                bat 'mvn clean package'  // Sesuaikan dengan proses build Anda
             }
         }
 
-        stage('Deploy') {
+        stage('Deploy Output to GitHub') {
             steps {
-                echo "Deploying the application..."
-                bat 'copy target\\*.jar D:\\deploy-folder\\'
+                script {
+                    bat """
+                    git add .
+                    git commit -m "Deploy update from Jenkins"
+                    git push origin ${BRANCH}
+                    """
+                }
             }
         }
     }
