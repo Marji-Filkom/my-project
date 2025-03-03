@@ -1,39 +1,33 @@
 pipeline {
     agent any
 
-    environment {
-        GIT_CREDENTIALS = 'github-token'  
-        REPO_URL = 'https://github.com/Marji-Filkom/my-project.git'
-        BRANCH = 'main'
-    }
-
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-               git url: 'https://github.com/Marji-Filkom/my-project.git', branch: 'main'
+                git url: 'https://github.com/Marji-Filkom/my-project.git', branch: 'main'
+            }
+        }
+        
+        stage('Build') {
+            steps {
+                echo "Building the application..."
+                // Tambahkan perintah build, misalnya:
+                bat 'mvn clean package'
             }
         }
 
-        stage('Build Project') {
+        stage('Test') {
             steps {
-               bat 'mvn clean package'  // Sesuaikan dengan proses build Anda
+                echo "Running tests..."
+                // Tambahkan perintah testing, misalnya:
+                bat  'mvn test'
             }
         }
 
-        stage('Deploy Output to GitHub') {
+        stage('Deploy') {
             steps {
-                script {
-                   git config --global user.email "xmarjiy@gmail.com"
-                   git config --global user.name "Marji-Filkom"
-
-                   git add -f target/*
-                   git commit -m "Deploy update from Jenkins"
-
-                   # Pastikan tidak ada konflik sebelum push
-                   git pull origin ${BRANCH} --rebase || git pull origin ${BRANCH} --allow-unrelated-histories
-
-                   git push origin ${BRANCH}
-                 }
+                echo "Deploying the application..."
+                bat 'copy target\\*.jar D:\\deploy-folder\\'
             }
         }
     }
