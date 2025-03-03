@@ -10,14 +10,13 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git url: 'https://github.com/Marji-Filkom/my-project.git', branch: 'main'
-
+               git url: 'https://github.com/Marji-Filkom/my-project.git', branch: 'main'
             }
         }
 
         stage('Build Project') {
             steps {
-                bat 'mvn clean package'  // Sesuaikan dengan proses build Anda
+               bat 'mvn clean package'  // Sesuaikan dengan proses build Anda
             }
         }
 
